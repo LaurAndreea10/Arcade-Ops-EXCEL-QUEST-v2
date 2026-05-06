@@ -1,99 +1,131 @@
-# ARCADE OPS: EXCEL QUEST
+# ARCADE OPS: EXCEL QUEST — v2
 
-> Un univers gamificat care combină puzzle-uri Excel, prioritizare operațională și un hub arcade futurist. Single-file HTML/CSS/JS — zero dependențe, zero build.
+> **Un univers gamificat care combină puzzle-uri Excel, prioritizare operațională și un hub arcade futurist într-o experiență single-file.**
 
-**Live demo:** https://laurandreea10.github.io/arcade-ops-excel-quest
+Built by Laura Andreea — RO/EN bilingual portfolio project demonstrând product thinking, UX design, frontend engineering și visual identity.
 
 ---
 
-## Concept
-
-Joci ca un **Operator** într-un HQ digital neon. Misiunea: prioritizezi task-uri, repari formule Excel, optimizezi workflow-uri și lupți cu boss-uri pentru a avansa de la `TRAINEE` la `MASTER OPERATOR`. Un univers care arată simultan game design, UX systems, progression design și product thinking.
-
-## Ce conține
-
-**Hub & Navigation**
-- Splash screen cu animații neon
-- HQ Hub central cu player card, world map, mission terminal, live feed
-- HUD persistent cu rank, XP, coins
-- Profile screen cu stats, mastery bars și 12 achievements
-
-**Mini-games funcționale**
-- **Triage Rush** — 12 task-uri reale (incidents, requests, bugs), 4 acțiuni (Resolve / Escalate / Defer / Assign), timer, combo system, queue preview
-- **Formula Lab** — 8 puzzle-uri Excel cu mock spreadsheet, formula bar și 4 răspunsuri multiple. Acoperă SUM, IF, COUNTIF, AVERAGE, XLOOKUP, SUMIF, CONCAT
-- **Workflow Builder** — 5 procese reale de aranjat (onboarding client, procesare factură, bug fix, marketing campaign, recrutare)
-- **Crisis Room** — mod combinat, intens, time-pressured
-- **Boss Battle: The Queue Hydra** — 3 faze, stability bar, mecanica de "multiplicare" la greșeli
-
-**Sisteme**
-- 8 ranks: Trainee → Master Operator
-- 12 achievements cu condiții reale
-- Progresie pe districte cu unlock-uri condiționate
-- Mastery tracking pe 4 categorii
-- LocalStorage persistent (state survive la refresh)
-- Bilingv RO/EN (toggle live)
-
-**Game feel**
-- Scoring multi-strat: base + combo + speed bonus + perfect bonus
-- Combo bursts, score popups, screen shake la greșeli
-- Toast notifications pentru rank-ups și badges
-- Keyboard shortcuts (1/R, 2/E, 3/D, 4/A pentru triage; A/B/C/D pentru formula; Esc pentru exit)
-
-## Stack
-
-- **HTML/CSS/JS pur** într-un singur fișier (~165KB)
-- Fonts: Orbitron + Rajdhani + JetBrains Mono (Google Fonts)
-- Zero build step, zero dependencies
-- Funcționează offline după prima încărcare
-
-## Deploy pe GitHub Pages
-
-```bash
-# 1. Clonează / creează repo
-git init
-git add index.html README.md
-git commit -m "ARCADE OPS: EXCEL QUEST initial"
-
-# 2. Push pe GitHub (creează un repo nou: arcade-ops-excel-quest)
-git remote add origin https://github.com/LaurAndreea10/arcade-ops-excel-quest.git
-git branch -M main
-git push -u origin main
-
-# 3. În repo Settings → Pages → Source: main / root → Save
-# 4. Live la: https://laurandreea10.github.io/arcade-ops-excel-quest
-```
-
-## Structura proiectului
+## 📦 Structura proiectului
 
 ```
 arcade-ops-excel-quest/
-├── index.html    # Tot proiectul într-un singur fișier
-└── README.md     # Acest fișier
+├── index.html       # Aplicația principală (~232KB, 6,500+ linii)
+├── about.html       # Landing page de prezentare pentru recruiteri
+└── README.md
 ```
 
-## Keyboard shortcuts
-
-| Acțiune | Tastă |
-|---|---|
-| Triage / Boss: Resolve | `1` sau `R` |
-| Triage / Boss: Escalate | `2` sau `E` |
-| Triage / Boss: Defer | `3` sau `D` |
-| Triage / Boss: Assign | `4` sau `A` |
-| Formula Lab: răspuns A/B/C/D | `1`-`4` sau `A`-`D` |
-| Exit oricând | `Esc` |
-
-## Decizii de design
-
-- **Single-file** — pentru rapiditate de iterare și ușurință de share. Tot proiectul stă într-un fișier, exact ca BASKET-VS-AI și NEXUS ARCADE.
-- **Neon arcade + dark mode dashboard** — paletă cyan / magenta / electric purple / lime, font display Orbitron, mono JetBrains Mono. Mix între cabinet de arcade și SaaS dashboard premium.
-- **RO-first cu EN toggle** — UI-ul nativ în română, toate task-urile / puzzle-urile / explicațiile traduse în ambele limbi.
-- **Conținut realist** — task-urile de triage sunt scenarii reale (P1 outage, GDPR risk, vendor invoice, etc.), nu placeholder-uri. Puzzle-urile Excel acoperă funcții pe care le folosești zilnic.
-- **Progression-driven, nu gating-driven** — districtele se deblochează prin progres, nu sunt blocate artificial cu paywall-uri.
-
-## License
-
-MIT — folosește, fork-uiește, învață din el.
+**Zero dependențe externe.** Două fișiere HTML self-contained.
 
 ---
 
-**Built by [Laura Andreea](https://github.com/LaurAndreea10)** • Part of the [CodePen Portfolio](https://laurandreea10.github.io/codepen-portfolio/) collection.
+## ⚡ Ce e nou în v2
+
+### 🔊 Sound design
+Engine audio sintetizat cu **Web Audio API** — zero fișiere externe:
+- Click-uri subtile pe butoane
+- Arpeggii ascendente la success
+- Combo escalation (frequency creste cu combo-ul)
+- Boss hit cu noise burst
+- Rank-up flourish (4 note triumfătoare)
+- Buton de mute în HUD (♪ / ⊘)
+
+### 🔥 Daily Challenges + Streak System
+- **3 provocări noi** generate determinist din data zilei
+- Streak counter cu **bonus XP până la +50%**
+- Timer real-time până la reset
+- 6 tipuri de challenges: triage perfect, formula streak, workflow first-try, combo, missions count, high score
+
+### ✨ Customization Station
+- **6 avatar skins** unlock-abile cu coins (Neon Clasic, Cyan Pulse, Lime Circuit, Amber Flame, Gold Elite, Prizm Master)
+- **5 neon themes** (Magenta Ops, Cyber Blue, Toxic Lime, Sunset Hunt, Matrix Green)
+- Theme-ul schimbă paleta întregului joc **live** (CSS variables)
+- Avatar-ul se aplică și în Hub și în Profile
+
+### 📚 Conținut extins
+- Triage Rush: **12 → 25 task-uri** (Stripe webhook, GDPR, vendor disputes, DDoS, etc.)
+- Formula Lab: **8 → 21 puzzle-uri** (VLOOKUP, INDEX-MATCH, ROUND, MAX, IFERROR, LEN, TEXT, TRIM, TODAY, LEFT/RIGHT, AND/OR, COUNTIF criteria)
+
+### 🎓 Onboarding tutorial
+Overlay 5-step pentru first-time users:
+1. Welcome → context-ul jocului
+2. Triage Rush → 4 acțiuni + keyboard shortcuts
+3. Formula Lab → puzzle-uri + tipuri
+4. Progression → XP, ranks, combo
+5. Districts & Boss → world map + Queue Hydra
+
+Skip option oricând. Detectează automat first-time vs returning user.
+
+### 🌐 Landing page (`about.html`)
+Pagină separată orientată spre recruiteri:
+- Hero cu shimmer animation
+- 4 pillars (concept overview)
+- 9 systems (toate feature-urile)
+- 4 skill columns (Product / UX / Frontend / Visual)
+- Tech stack badges
+- CTA card
+- Mobile responsive
+
+---
+
+## 🎮 Mecanici principale
+
+| Modul | Conținut | Mecanică |
+|-------|----------|----------|
+| **Triage Rush** | 25 task-uri | Resolve / Escalate / Defer / Assign |
+| **Formula Lab** | 21 puzzle-uri | Multiple choice cu hints |
+| **Workflow Builder** | 5 procese | Drag-to-reorder steps |
+| **Crisis Room** | Mixed mode | Triage + boss elements |
+| **Boss: Queue Hydra** | 3 faze | Multiplicare la greșeală |
+
+---
+
+## 🎯 Progresie
+
+- **8 ranguri** de la Trainee → Master Operator
+- **12 achievement-uri** (badges)
+- **6 districte** unlock-abile progresiv
+- **XP + Coins** economy
+- **localStorage** persistence (key: `arcade-ops-excel-quest-v1`)
+
+---
+
+## ⌨️ Keyboard shortcuts
+
+**Triage Rush:** `1` `2` `3` `4` (sau `R` `E` `D` `A`)
+**Formula Lab:** `A` `B` `C` `D` (sau `1-4`)
+**Global:** `Esc` pentru exit
+
+---
+
+## 🚀 Deployment pe GitHub Pages
+
+1. Creează repo nou: `arcade-ops-excel-quest`
+2. Push ambele fișiere (`index.html` și `about.html`)
+3. Settings → Pages → Source: `main` branch, root folder
+4. Demo va fi disponibil la: `https://laurandreea10.github.io/arcade-ops-excel-quest/`
+5. Landing page la: `https://laurandreea10.github.io/arcade-ops-excel-quest/about.html`
+
+**Pentru CV/LinkedIn:** trimite link-ul către `about.html` (este orientat spre cititor) și include și link-ul direct către `index.html` pentru cei care vor să joace direct.
+
+---
+
+## 🛠️ Tech stack
+
+- HTML5 / CSS3 / Vanilla JavaScript
+- Web Audio API (SFX)
+- localStorage (persistence)
+- CSS custom properties (theming)
+- Google Fonts (Orbitron, Rajdhani, JetBrains Mono)
+- Zero build tools, zero npm packages
+
+---
+
+## 📊 Metrici
+
+- **~232 KB** un singur fișier (index.html)
+- **~22 KB** landing page (about.html)
+- **6,500+** linii de cod
+- **0** dependențe externe
+- **2** limbi (RO + EN)
+- **51** task-uri și puzzle-uri unice

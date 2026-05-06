@@ -344,6 +344,29 @@ input, select {
   box-shadow: 0 0 12px var(--neon-magenta-dim);
 }
 
+.hud-sound-btn {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  background: var(--bg-glass);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--neon-cyan);
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-snap);
+}
+.hud-sound-btn:hover {
+  border-color: var(--neon-cyan);
+  background: rgba(0, 240, 255, 0.1);
+  box-shadow: 0 0 12px var(--neon-cyan-dim);
+}
+.hud-sound-btn.is-muted {
+  color: var(--text-muted);
+  border-color: var(--text-muted);
+}
+
 /* ============================================================
    BUTTON SYSTEM
    ============================================================ */
@@ -2578,8 +2601,430 @@ input, select {
 }
 
 /* ============================================================
-   TUTORIAL OVERLAY
+   CUSTOMIZATION STATION
    ============================================================ */
+
+.customize-section {
+  margin-bottom: 32px;
+}
+
+.customize-section-title {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--neon-cyan);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.customize-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.customize-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s var(--ease-snap);
+}
+
+.customize-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--neon-cyan);
+  box-shadow: 0 8px 24px var(--neon-cyan-dim);
+}
+
+.customize-item.is-equipped {
+  border-color: var(--neon-lime);
+  background: rgba(182, 255, 60, 0.05);
+  box-shadow: 0 0 16px var(--neon-lime-dim);
+}
+
+.customize-item.is-locked { opacity: 0.7; }
+
+.customize-preview-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 0 auto 14px;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 900;
+  color: white;
+  box-shadow: 0 0 24px rgba(168, 85, 255, 0.4);
+}
+
+.customize-preview-theme {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-md);
+  margin: 0 auto 14px;
+  box-shadow: 0 0 24px rgba(168, 85, 255, 0.3);
+}
+
+.customize-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.customize-item .btn { 
+  width: 100%; 
+  padding-left: 8px;
+  padding-right: 8px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+/* ============================================================
+   DAILY CHALLENGES
+   ============================================================ */
+
+.dailies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.daily-card {
+  background: linear-gradient(145deg, var(--bg-elevated), var(--bg-panel));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s var(--ease-snap);
+}
+
+.daily-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--daily-color, var(--neon-cyan));
+  box-shadow: 0 0 8px var(--daily-color, var(--neon-cyan));
+}
+
+.daily-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--daily-color, var(--neon-cyan));
+}
+
+.daily-card.is-completed {
+  opacity: 0.65;
+}
+
+.daily-card.is-completed::after {
+  content: '✓ DONE';
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 4px 10px;
+  background: var(--neon-lime);
+  color: var(--bg-void);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  border-radius: 4px;
+}
+
+.daily-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.daily-icon {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--daily-color, var(--neon-cyan));
+  border-radius: var(--radius-md);
+  color: var(--daily-color, var(--neon-cyan));
+  text-shadow: 0 0 8px currentColor;
+}
+
+.daily-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  color: var(--daily-color, var(--neon-cyan));
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.daily-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.daily-desc {
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.daily-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.daily-progress-text {
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+.daily-progress-text strong { color: var(--text-primary); }
+
+.daily-reward {
+  color: var(--neon-lime);
+  font-weight: 700;
+}
+
+.daily-progress-bar {
+  height: 4px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.daily-progress-fill {
+  height: 100%;
+  background: var(--daily-color, var(--neon-cyan));
+  box-shadow: 0 0 8px currentColor;
+  border-radius: 999px;
+  transition: width 0.6s var(--ease-snap);
+}
+
+.streak-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 24px;
+  background: linear-gradient(90deg, rgba(255, 138, 60, 0.15), rgba(255, 46, 200, 0.08));
+  border: 1px solid var(--neon-orange);
+  border-radius: var(--radius-lg);
+  margin-bottom: 24px;
+}
+
+.streak-flame {
+  font-size: 36px;
+  filter: drop-shadow(0 0 12px var(--neon-orange));
+  animation: streakPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes streakPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.streak-text { flex: 1; }
+
+.streak-count {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--neon-orange);
+  text-shadow: 0 0 12px var(--neon-orange);
+  line-height: 1;
+}
+
+.streak-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.onboarding-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 250;
+  background: rgba(5, 1, 15, 0.92);
+  backdrop-filter: blur(10px);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  animation: fadeInUp 0.4s var(--ease-snap);
+}
+
+.onboarding-card {
+  position: relative;
+  max-width: 540px;
+  width: 100%;
+  background: linear-gradient(145deg, var(--bg-elevated), var(--bg-panel));
+  border: 1px solid var(--neon-cyan);
+  border-radius: var(--radius-xl);
+  padding: 36px;
+  box-shadow: 0 0 60px var(--neon-cyan-dim), 0 30px 80px rgba(0, 0, 0, 0.7);
+  text-align: center;
+}
+
+.onboarding-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+  box-shadow: 0 0 12px var(--neon-cyan);
+}
+
+.onboarding-progress {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.onboarding-progress-dot {
+  width: 24px;
+  height: 4px;
+  background: var(--bg-glass);
+  border-radius: 999px;
+  transition: all 0.3s var(--ease-snap);
+}
+
+.onboarding-progress-dot.is-active {
+  background: var(--neon-cyan);
+  box-shadow: 0 0 8px var(--neon-cyan);
+  width: 36px;
+}
+
+.onboarding-progress-dot.is-done {
+  background: var(--neon-lime);
+}
+
+.onboarding-step {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--neon-cyan);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.onboarding-icon {
+  font-size: 56px;
+  margin-bottom: 18px;
+  filter: drop-shadow(0 0 16px var(--neon-cyan-dim));
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+.onboarding-title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  background: linear-gradient(135deg, #fff, var(--neon-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.onboarding-text {
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.65;
+  margin-bottom: 28px;
+  letter-spacing: 0.01em;
+}
+
+.onboarding-text strong {
+  color: var(--neon-cyan);
+  font-weight: 700;
+}
+
+.onboarding-keys {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.onboarding-key {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-primary);
+}
+
+.onboarding-key kbd {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--bg-void);
+  border: 1px solid var(--border-bright);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--neon-cyan);
+}
+
+.onboarding-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.onboarding-skip {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s;
+}
+
+.onboarding-skip:hover { color: var(--text-secondary); background: var(--bg-glass); }
 
 .tutorial-overlay {
   position: fixed;
@@ -2837,6 +3282,9 @@ input, select {
     <button class="is-active" data-lang="ro">RO</button>
     <button data-lang="en">EN</button>
   </div>
+  <button class="hud-sound-btn" id="hud-sound-toggle" title="Toggle sound">
+    <span id="hud-sound-icon">♪</span>
+  </button>
 </header>
 
 <div id="app">
@@ -2870,6 +3318,26 @@ input, select {
           <div class="menu-item-text">
             <div class="menu-item-title" data-i18n="menu.profile">Operator Profile</div>
             <div class="menu-item-desc" data-i18n="menu.profileDesc">Stats, mastery, achievements</div>
+          </div>
+        </div>
+        <div class="menu-item-arrow">→</div>
+      </button>
+      <button class="menu-item" data-nav="dailies">
+        <div class="menu-item-content">
+          <div class="menu-item-icon">🔥</div>
+          <div class="menu-item-text">
+            <div class="menu-item-title" data-i18n="menu.dailies">Daily Challenges</div>
+            <div class="menu-item-desc" data-i18n="menu.dailiesDesc">Provocări zilnice + streak system</div>
+          </div>
+        </div>
+        <div class="menu-item-arrow">→</div>
+      </button>
+      <button class="menu-item" data-nav="customize">
+        <div class="menu-item-content">
+          <div class="menu-item-icon">✨</div>
+          <div class="menu-item-text">
+            <div class="menu-item-title" data-i18n="menu.customize">Customization Station</div>
+            <div class="menu-item-desc" data-i18n="menu.customizeDesc">Avatar skins, neon themes</div>
           </div>
         </div>
         <div class="menu-item-arrow">→</div>
@@ -2996,6 +3464,51 @@ input, select {
   </div>
 </section>
 
+
+<!-- ============================================================
+     DAILY CHALLENGES
+     ============================================================ -->
+<section class="page" id="screen-dailies">
+  <div class="page-inner">
+    <div class="page-header">
+      <div class="page-eyebrow">// DAILY OPS // RESETS IN <span id="dailies-countdown">--:--:--</span></div>
+      <h1 class="page-title" data-i18n="dailies.title">Daily Challenges</h1>
+      <p class="page-subtitle" data-i18n="dailies.subtitle">
+        Provocări noi în fiecare zi. Mențineți streak-ul pentru bonus XP.
+      </p>
+    </div>
+
+    <div class="streak-banner">
+      <div class="streak-flame">🔥</div>
+      <div class="streak-text">
+        <div class="streak-count" id="streak-count">0</div>
+        <div class="streak-label" data-i18n="dailies.streakLabel">DAY STREAK</div>
+      </div>
+      <div style="text-align:right">
+        <div class="streak-count" id="dailies-bonus" style="color:var(--neon-lime);text-shadow:0 0 12px var(--neon-lime)">+0%</div>
+        <div class="streak-label" data-i18n="dailies.bonusLabel">XP BONUS</div>
+      </div>
+    </div>
+
+    <div class="dailies-grid" id="dailies-grid"><!-- daily challenges injected --></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CUSTOMIZATION STATION
+     ============================================================ -->
+<section class="page" id="screen-customize">
+  <div class="page-inner">
+    <div class="page-header">
+      <div class="page-eyebrow">// CUSTOMIZATION STATION // PERSONAL OUTFITTER</div>
+      <h1 class="page-title" data-i18n="customize.title">Customization Station</h1>
+      <p class="page-subtitle" data-i18n="customize.subtitle">
+        Personalizează-ți operator-ul. Plătești cu coins.
+      </p>
+    </div>
+    <div id="customize-grid"></div>
+  </div>
+</section>
 
 <!-- ============================================================
      TRIAGE RUSH
@@ -3403,6 +3916,23 @@ input, select {
 
 </div><!-- /#app -->
 
+<!-- Onboarding overlay -->
+<div class="onboarding-overlay" id="onboarding-overlay" style="display:none;">
+  <div class="onboarding-card">
+    <div class="onboarding-skip" id="onboarding-skip-btn"><span data-i18n="onboarding.skip">SKIP →</span></div>
+    <div class="onboarding-progress" id="onboarding-progress"></div>
+    <div class="onboarding-step" id="onboarding-step-label"></div>
+    <div class="onboarding-icon" id="onboarding-icon"></div>
+    <h2 class="onboarding-title" id="onboarding-title"></h2>
+    <div class="onboarding-text" id="onboarding-text"></div>
+    <div id="onboarding-extra"></div>
+    <div class="onboarding-actions">
+      <button class="btn btn--ghost btn--sm" id="onboarding-back" data-i18n="onboarding.back">← Înapoi</button>
+      <button class="btn btn--primary" id="onboarding-next"><span data-i18n="onboarding.next">Continuă →</span></button>
+    </div>
+  </div>
+</div>
+
 <!-- Toast container -->
 <div class="toast-container" id="toast-container"></div>
 
@@ -3437,6 +3967,22 @@ const I18N = {
     'menu.quickFormulaDesc': 'Puzzle-uri Excel rapide',
     'menu.reset': 'Resetare Progres',
     'menu.resetDesc': 'Șterge toate datele salvate local',
+    'menu.dailies': 'Daily Challenges',
+    'menu.dailiesDesc': 'Provocări zilnice + streak system',
+    'menu.customize': 'Customization Station',
+    'menu.customizeDesc': 'Avatar skins, neon themes',
+    'dailies.title': 'Provocări Zilnice',
+    'dailies.subtitle': 'Provocări noi în fiecare zi. Mentine streak-ul pentru bonus XP.',
+    'dailies.streakLabel': 'ZILE LA RÂND',
+    'dailies.bonusLabel': 'BONUS XP',
+    'customize.title': 'Customization Station',
+    'customize.subtitle': 'Personalizează-ți operator-ul. Plătești cu coins.',
+    'customize.avatar': 'AVATAR SKIN',
+    'customize.theme': 'NEON THEME',
+    'customize.unlock': 'Deblochează',
+    'customize.equipped': '✓ ECHIPAT',
+    'customize.equip': 'Echipează',
+    'customize.locked': '🔒 BLOCAT',
     'hub.title': 'Hub Operațiuni',
     'hub.subtitle': 'Centrul de comandă. Selectează un district, lansează o misiune sau verifică progresul.',
     'hub.operator': 'OPERATOR',
@@ -3492,6 +4038,10 @@ const I18N = {
     'profile.workflowMastery': 'Workflow Mastery',
     'profile.bossMastery': 'Boss Mastery',
     'profile.achievements': 'PERETE ACHIEVEMENTS',
+    'onboarding.skip': 'SKIP →',
+    'onboarding.back': '← Înapoi',
+    'onboarding.next': 'Continuă →',
+    'onboarding.start': '⚡ Pornim!',
   },
   en: {
     'splash.eyebrow': 'ARCADE OPERATIONS // INITIALIZING',
@@ -3512,6 +4062,22 @@ const I18N = {
     'menu.quickFormulaDesc': 'Fast-paced Excel puzzles',
     'menu.reset': 'Reset Progress',
     'menu.resetDesc': 'Clear all locally saved data',
+    'menu.dailies': 'Daily Challenges',
+    'menu.dailiesDesc': 'Daily challenges + streak system',
+    'menu.customize': 'Customization Station',
+    'menu.customizeDesc': 'Avatar skins, neon themes',
+    'dailies.title': 'Daily Challenges',
+    'dailies.subtitle': 'Fresh challenges every day. Keep your streak for bonus XP.',
+    'dailies.streakLabel': 'DAY STREAK',
+    'dailies.bonusLabel': 'XP BONUS',
+    'customize.title': 'Customization Station',
+    'customize.subtitle': 'Personalize your operator. Pay with coins.',
+    'customize.avatar': 'AVATAR SKIN',
+    'customize.theme': 'NEON THEME',
+    'customize.unlock': 'Unlock',
+    'customize.equipped': '✓ EQUIPPED',
+    'customize.equip': 'Equip',
+    'customize.locked': '🔒 LOCKED',
     'hub.title': 'Operations Hub',
     'hub.subtitle': 'Command center. Select a district, launch a mission, or check your progress.',
     'hub.operator': 'OPERATOR',
@@ -3567,6 +4133,10 @@ const I18N = {
     'profile.workflowMastery': 'Workflow Mastery',
     'profile.bossMastery': 'Boss Mastery',
     'profile.achievements': 'ACHIEVEMENTS WALL',
+    'onboarding.skip': 'SKIP →',
+    'onboarding.back': '← Back',
+    'onboarding.next': 'Continue →',
+    'onboarding.start': '⚡ Let\'s go!',
   }
 };
 
@@ -3688,6 +4258,19 @@ const TRIAGE_TASKS = [
   { id: 'INC-6661', priority: 'P1', title: { ro: 'Date personale expuse', en: 'Personal data exposed' }, body: { ro: 'Un endpoint returnează date sensibile fără auth. Risc GDPR major.', en: 'An endpoint returns sensitive data without auth. Major GDPR risk.' }, type: { ro: 'Security', en: 'Security' }, owner: 'Security', impact: { ro: 'GDPR', en: 'GDPR' }, correct: 'escalate', explain: { ro: 'Risc GDPR → escalate la Security + DPO imediat.', en: 'GDPR risk → escalate to Security + DPO immediately.' } },
   { id: 'REQ-2341', priority: 'P2', title: { ro: 'Dashboard pentru CEO', en: 'CEO dashboard' }, body: { ro: 'CEO vrea un dashboard custom cu KPI lunari. Tu nu ai context complet — Analytics da.', en: 'CEO wants a custom dashboard with monthly KPIs. You don\'t have full context — Analytics does.' }, type: { ro: 'Cerere', en: 'Request' }, owner: 'Analytics', impact: { ro: 'Leadership', en: 'Leadership' }, correct: 'assign', explain: { ro: 'Tu nu ai context → assign la Analytics care are datele.', en: 'You lack context → assign to Analytics who have the data.' } },
   { id: 'BUG-2299', priority: 'P4', title: { ro: 'Animație pe hover lipsește', en: 'Hover animation missing' }, body: { ro: 'Pe pagina About, butonul nu mai are tranziția de hover. Doar cosmetic, nimeni nu s-a plâns.', en: 'On the About page, the button has no hover transition. Just cosmetic, no complaints.' }, type: { ro: 'UI', en: 'UI' }, owner: 'Frontend', impact: { ro: 'Polish', en: 'Polish' }, correct: 'defer', explain: { ro: 'Cosmetic, fără complaint → defer.', en: 'Cosmetic, no complaints → defer.' } },
+  { id: 'INC-7720', priority: 'P1', title: { ro: 'Plățile sunt blocate', en: 'Payments are stuck' }, body: { ro: 'Stripe webhook returnează 503. Tranzacții în pending acumulează. Customers raportează "card respins" deși au bani.', en: 'Stripe webhook returns 503. Pending transactions piling up. Customers report "card declined" despite having funds.' }, type: { ro: 'Outage', en: 'Outage' }, owner: 'Payments', impact: { ro: 'Venit blocat', en: 'Revenue blocked' }, correct: 'escalate', explain: { ro: 'P1 + venit blocat + provider extern → escalate la incident response.', en: 'P1 + blocked revenue + external provider → escalate to incident response.' } },
+  { id: 'REQ-3402', priority: 'P3', title: { ro: 'Acces SFTP pentru audit', en: 'SFTP access for audit' }, body: { ro: 'Auditorul extern are nevoie de acces read-only la folder-ul /reports pentru auditul anual. Audit începe peste 2 săptămâni.', en: 'External auditor needs read-only access to /reports folder for yearly audit. Audit starts in 2 weeks.' }, type: { ro: 'Cerere', en: 'Request' }, owner: 'IT Security', impact: { ro: 'Compliance', en: 'Compliance' }, correct: 'assign', explain: { ro: 'Cerere standard cu lead time → assign la IT Security.', en: 'Standard request with lead time → assign to IT Security.' } },
+  { id: 'BUG-4499', priority: 'P2', title: { ro: 'Email-uri tranzacționale nu pleacă', en: 'Transactional emails not sending' }, body: { ro: 'Order confirmation emails nu mai pleacă din ieri. Customer support începe să primească tickets.', en: 'Order confirmation emails not sent since yesterday. Customer support starts getting tickets.' }, type: { ro: 'Bug', en: 'Bug' }, owner: 'Platform', impact: { ro: 'Customer experience', en: 'Customer experience' }, correct: 'assign', explain: { ro: 'Sistem extern (email service), tu nu ai access → assign la Platform.', en: 'External system (email service), you have no access → assign to Platform.' } },
+  { id: 'TKT-5511', priority: 'P3', title: { ro: 'Update colors în brand guide', en: 'Update colors in brand guide' }, body: { ro: 'Marketing vrea hex-urile noi pentru secondary colors. Tu ai documentația. Iau 5 minute.', en: 'Marketing wants the new hex codes for secondary colors. You have the docs. Takes 5 minutes.' }, type: { ro: 'Doc', en: 'Doc' }, owner: 'You', impact: { ro: 'Brand consistency', en: 'Brand consistency' }, correct: 'resolve', explain: { ro: '5 min, tu ai docs-ul → resolve.', en: '5 min, you have the docs → resolve.' } },
+  { id: 'INC-1188', priority: 'P1', title: { ro: 'API rate limit hit', en: 'API rate limit hit' }, body: { ro: 'Mai multe servicii downstream returnează 429. Sistem partial down. SLA-uri afectate.', en: 'Multiple downstream services return 429. System partially down. SLAs affected.' }, type: { ro: 'Performance', en: 'Performance' }, owner: 'Engineering', impact: { ro: 'SLA breach', en: 'SLA breach' }, correct: 'escalate', explain: { ro: 'P1 SLA breach → escalate la on-call lead.', en: 'P1 SLA breach → escalate to on-call lead.' } },
+  { id: 'REQ-9923', priority: 'P4', title: { ro: 'Discount code pentru friend', en: 'Discount code for a friend' }, body: { ro: 'Un coleg cere un cod 50% pentru un prieten. Nu există proces, nu e parte din nicio campanie.', en: 'A colleague asks for a 50% code for a friend. No process, not part of any campaign.' }, type: { ro: 'Cerere', en: 'Request' }, owner: 'Marketing', impact: { ro: 'None', en: 'None' }, correct: 'defer', explain: { ro: 'Out of scope și fără proces → defer (politicos: "nu putem face exceptii").', en: 'Out of scope and no process → defer (politely: "we can\'t make exceptions").' } },
+  { id: 'BUG-7733', priority: 'P2', title: { ro: 'Date duplicate în export CSV', en: 'Duplicate data in CSV export' }, body: { ro: 'Export-ul de clienți generează 200 de duplicate. Sales-ul folosește export-ul mâine pentru o campanie.', en: 'Customer export generates 200 duplicates. Sales uses the export tomorrow for a campaign.' }, type: { ro: 'Bug', en: 'Bug' }, owner: 'You', impact: { ro: 'Sales blocker', en: 'Sales blocker' }, correct: 'resolve', explain: { ro: 'Tu cunoști query-ul și deadline e mâine → resolve.', en: 'You know the query and the deadline is tomorrow → resolve.' } },
+  { id: 'TKT-6661', priority: 'P3', title: { ro: 'Documentație API outdated', en: 'API documentation outdated' }, body: { ro: 'Endpoints-uri noi adăugate luna trecută nu sunt în docs. Dev relations are nevoie să le adauge.', en: 'New endpoints added last month aren\'t in docs. DevRel needs to add them.' }, type: { ro: 'Doc', en: 'Doc' }, owner: 'DevRel', impact: { ro: 'Developer experience', en: 'Developer experience' }, correct: 'assign', explain: { ro: 'DevRel are owner-ship pe docs → assign.', en: 'DevRel owns the docs → assign.' } },
+  { id: 'INC-3030', priority: 'P2', title: { ro: 'Search returnează rezultate vechi', en: 'Search returns stale results' }, body: { ro: 'Search index nu s-a updatat de 6 ore. Customers nu găsesc produsele noi. Investigation needed.', en: 'Search index hasn\'t updated in 6 hours. Customers can\'t find new products. Needs investigation.' }, type: { ro: 'Performance', en: 'Performance' }, owner: 'Search', impact: { ro: 'Conversie scăzută', en: 'Lower conversion' }, correct: 'assign', explain: { ro: 'Sistem specializat → assign la team-ul Search.', en: 'Specialized system → assign to the Search team.' } },
+  { id: 'TKT-8800', priority: 'P4', title: { ro: 'A/B test idea pentru CTA', en: 'A/B test idea for CTA' }, body: { ro: 'Un junior PM are o idee de testat două variante de CTA. Nu e prioritizat în roadmap.', en: 'A junior PM has an idea to test two CTA variants. Not prioritized in roadmap.' }, type: { ro: 'Experiment', en: 'Experiment' }, owner: 'Product', impact: { ro: 'Discutabil', en: 'Debatable' }, correct: 'defer', explain: { ro: 'Idee fără prioritate → defer la următorul roadmap planning.', en: 'Idea without priority → defer to next roadmap planning.' } },
+  { id: 'INC-4040', priority: 'P1', title: { ro: 'DDoS attack în desfășurare', en: 'DDoS attack ongoing' }, body: { ro: 'Trafic anormal de 10x baseline. CDN-ul cade. Site indisponibil pe regiunea EU.', en: 'Anomalous traffic at 10x baseline. CDN failing. Site unavailable in EU region.' }, type: { ro: 'Security', en: 'Security' }, owner: 'Security', impact: { ro: 'Major outage', en: 'Major outage' }, correct: 'escalate', explain: { ro: 'Atac activ + outage → escalate către Security + incident commander.', en: 'Active attack + outage → escalate to Security + incident commander.' } },
+  { id: 'BUG-1212', priority: 'P3', title: { ro: 'Footer link rupt', en: 'Footer link broken' }, body: { ro: 'Link-ul "Privacy Policy" din footer dă 404 după ultimul deploy. Tu ai access la URL-ul corect.', en: '"Privacy Policy" footer link returns 404 after last deploy. You have access to the correct URL.' }, type: { ro: 'Bug', en: 'Bug' }, owner: 'You', impact: { ro: 'Compliance', en: 'Compliance' }, correct: 'resolve', explain: { ro: 'Compliance + tu poți repara repede → resolve.', en: 'Compliance + you can fix quickly → resolve.' } },
+  { id: 'REQ-5050', priority: 'P2', title: { ro: 'Date pentru board deck', en: 'Data for board deck' }, body: { ro: 'CEO are nevoie de cifrele Q3 pentru board meeting joi. Analytics deține datele oficiale.', en: 'CEO needs Q3 numbers for Thursday board meeting. Analytics holds the official data.' }, type: { ro: 'Cerere', en: 'Request' }, owner: 'Analytics', impact: { ro: 'Leadership', en: 'Leadership' }, correct: 'assign', explain: { ro: 'Date oficiale → assign la Analytics, nu reproduce datele tu.', en: 'Official data → assign to Analytics, don\'t reproduce them yourself.' } },
 ];
 
 const FORMULA_PUZZLES = [
@@ -3803,6 +4386,183 @@ const FORMULA_PUZZLES = [
     explain: { ro: 'Operatorul & concatenează. " " adaugă un spațiu.', en: 'The & operator concatenates. " " adds a space.' },
     hint: { ro: '& = concatenează. Pentru spațiu: " " (cu ghilimele).', en: '& = concatenate. For a space: " " (with quotes).' }
   },
+  {
+    type: 'fill',
+    function: 'VLOOKUP',
+    question: { ro: 'Cum cauți prețul "Mouse" cu VLOOKUP?', en: 'How do you look up "Mouse" price with VLOOKUP?' },
+    context: { ro: 'VLOOKUP — funcția clasică (cere coloana de match să fie prima).', en: 'VLOOKUP — classic function (match column must be first).' },
+    headers: ['A: Produs', 'B: Preț'],
+    rows: [['Laptop', '1200'], ['Mouse', '25'], ['Monitor', '300'], ['Caut', '?']],
+    targetCell: { row: 3, col: 1 },
+    answers: ['=VLOOKUP("Mouse",A2:B4,2,FALSE)', '=VLOOKUP("Mouse",B2:B4,1,FALSE)', '=VLOOKUP(A2:B4,"Mouse",2)', '=VLOOKUP("Mouse",A:A,2,TRUE)'],
+    correct: 0,
+    explain: { ro: 'VLOOKUP(value, range, col_index, exact_match). FALSE = match exact.', en: 'VLOOKUP(value, range, col_index, exact_match). FALSE = exact match.' },
+    hint: { ro: 'VLOOKUP(ce_cauți, range_complet, ce_coloană_returnezi, FALSE).', en: 'VLOOKUP(what, full_range, return_column, FALSE).' }
+  },
+  {
+    type: 'fill',
+    function: 'INDEX-MATCH',
+    question: { ro: 'Care e echivalentul XLOOKUP cu INDEX-MATCH?', en: 'What is the INDEX-MATCH equivalent of XLOOKUP?' },
+    context: { ro: 'INDEX-MATCH e mai flexibil ca VLOOKUP — coloana de match poate fi oriunde.', en: 'INDEX-MATCH is more flexible than VLOOKUP — match column can be anywhere.' },
+    headers: ['A: Cod', 'B: Produs', 'C: Preț'],
+    rows: [['001', 'Laptop', '1200'], ['002', 'Mouse', '25'], ['Caut "Mouse"', '?', '?']],
+    targetCell: { row: 2, col: 2 },
+    answers: ['=INDEX(C2:C3,MATCH("Mouse",B2:B3,0))', '=INDEX(MATCH("Mouse",B2:B3,0),C2:C3)', '=MATCH("Mouse",INDEX(C2:C3))', '=INDEX(B2:B3,MATCH("Mouse",C2:C3,0))'],
+    correct: 0,
+    explain: { ro: 'INDEX(coloana_de_returnat, MATCH(valoare, coloana_de_căutat, 0)).', en: 'INDEX(return_column, MATCH(value, lookup_column, 0)).' },
+    hint: { ro: 'MATCH găsește poziția. INDEX returnează valoarea de la acea poziție.', en: 'MATCH finds the position. INDEX returns value at that position.' }
+  },
+  {
+    type: 'fill',
+    function: 'ROUND',
+    question: { ro: 'Cum rotunjești 3.14159 la 2 zecimale?', en: 'How do you round 3.14159 to 2 decimals?' },
+    context: { ro: 'ROUND pentru valori financiare, prețuri, etc.', en: 'ROUND for financial values, prices, etc.' },
+    headers: ['A: Valoare', 'B: Rotunjit'],
+    rows: [['3.14159', '?']],
+    targetCell: { row: 0, col: 1 },
+    answers: ['=ROUND(A2,2)', '=ROUND(2,A2)', '=ROUND(A2)', '=ROUNDUP(A2,2)'],
+    correct: 0,
+    explain: { ro: 'ROUND(valoare, num_zecimale). Rotunjire matematică standard.', en: 'ROUND(value, decimals). Standard mathematical rounding.' },
+    hint: { ro: 'ROUND(value, decimals). Pozitiv = zecimale, negativ = ordin de mărime.', en: 'ROUND(value, decimals). Positive = decimals, negative = orders of magnitude.' }
+  },
+  {
+    type: 'fill',
+    function: 'MAX',
+    question: { ro: 'Cea mai mare vânzare din B2:B6?', en: 'Highest sale in B2:B6?' },
+    context: { ro: 'MAX găsește valoarea maximă într-un range.', en: 'MAX finds the maximum value in a range.' },
+    headers: ['A: Lună', 'B: Vânzări'],
+    rows: [['Ian', '3200'], ['Feb', '4100'], ['Mar', '5800'], ['Apr', '4500'], ['Mai', '3900'], ['Max', '?']],
+    targetCell: { row: 5, col: 1 },
+    answers: ['=MAX(B2:B6)', '=MAXIMUM(B2:B6)', '=BIG(B2:B6)', '=TOP(B2:B6,1)'],
+    correct: 0,
+    explain: { ro: 'MAX(range) returnează cea mai mare valoare numerică.', en: 'MAX(range) returns the highest numeric value.' },
+    hint: { ro: 'MAX = max. MIN = min. AVERAGE = medie. Funcții de bază.', en: 'MAX = max. MIN = min. AVERAGE = mean. Core functions.' }
+  },
+  {
+    type: 'fill',
+    function: 'IFERROR',
+    question: { ro: 'Cum afișezi "N/A" când o formulă dă eroare?', en: 'How do you show "N/A" when a formula errors?' },
+    context: { ro: 'IFERROR previne afișarea erorilor #DIV/0! sau #N/A în rapoarte.', en: 'IFERROR prevents #DIV/0! or #N/A errors from showing in reports.' },
+    headers: ['A: Total', 'B: Items', 'C: Per Item'],
+    rows: [['100', '0', '?']],
+    targetCell: { row: 0, col: 2 },
+    answers: ['=IFERROR(A2/B2,"N/A")', '=IF(ERROR(A2/B2),"N/A")', '=ERROR(A2/B2,"N/A")', '=A2/B2 OR "N/A"'],
+    correct: 0,
+    explain: { ro: 'IFERROR(formula, valoare_dacă_eroare). Curat și concis.', en: 'IFERROR(formula, value_if_error). Clean and concise.' },
+    hint: { ro: 'IFERROR(ceva, fallback). Dacă "ceva" dă eroare → afișează fallback.', en: 'IFERROR(something, fallback). If "something" errors → show fallback.' }
+  },
+  {
+    type: 'fill',
+    function: 'LEN',
+    question: { ro: 'Câte caractere are textul din A2?', en: 'How many characters in the text in A2?' },
+    context: { ro: 'LEN — pentru validări de input, conturi de caractere.', en: 'LEN — for input validation, character counts.' },
+    headers: ['A: Text', 'B: Caractere'],
+    rows: [['Arcade Ops', '?']],
+    targetCell: { row: 0, col: 1 },
+    answers: ['=LEN(A2)', '=LENGTH(A2)', '=COUNT(A2)', '=CHARS(A2)'],
+    correct: 0,
+    explain: { ro: 'LEN(text) returnează numărul de caractere (inclusiv spații).', en: 'LEN(text) returns the character count (including spaces).' },
+    hint: { ro: 'LEN = length. Numără TOATE caracterele, inclusiv spații.', en: 'LEN = length. Counts ALL characters, including spaces.' }
+  },
+  {
+    type: 'fix',
+    function: 'SUMIF',
+    question: { ro: 'Ce e GREȘIT la =SUMIF(B2:B5,"EU",A2:A5)?', en: 'What is WRONG with =SUMIF(B2:B5,"EU",A2:A5)?' },
+    context: { ro: 'Vrei suma vânzărilor (col B) doar pentru regiunea "EU" (col A).', en: 'You want the sum of sales (col B) only for "EU" region (col A).' },
+    headers: ['A: Regiune', 'B: Vânzări'],
+    rows: [['EU', '500'], ['US', '700'], ['EU', '300']],
+    answers: [
+      { ro: 'Argumentele 1 și 3 sunt inversate', en: 'Arguments 1 and 3 are swapped' },
+      { ro: '"EU" trebuie scris fără ghilimele', en: '"EU" should be without quotes' },
+      { ro: 'SUMIF nu acceptă text', en: 'SUMIF doesn\'t accept text' },
+      { ro: 'Range-urile trebuie să fie absolute ($)', en: 'Ranges must be absolute ($)' },
+    ],
+    correct: 0,
+    explain: { ro: 'Sintaxa corectă: SUMIF(range_criteriu, criteriu, range_de_sumat). Aici e: =SUMIF(A2:A5,"EU",B2:B5).', en: 'Correct syntax: SUMIF(criterion_range, criterion, sum_range). Should be: =SUMIF(A2:A5,"EU",B2:B5).' },
+    hint: { ro: 'Ordine: unde_caut, ce_match, ce_aduni.', en: 'Order: where_check, what_match, what_sum.' }
+  },
+  {
+    type: 'fill',
+    function: 'TEXT',
+    question: { ro: 'Cum formatezi data 2026-05-06 ca "06 May 2026"?', en: 'How do you format date 2026-05-06 as "06 May 2026"?' },
+    context: { ro: 'TEXT() converteste valori în text formatat.', en: 'TEXT() converts values to formatted text.' },
+    headers: ['A: Data', 'B: Formatat'],
+    rows: [['2026-05-06', '?']],
+    targetCell: { row: 0, col: 1 },
+    answers: ['=TEXT(A2,"dd mmm yyyy")', '=TEXT(A2,"DD-MM-YYYY")', '=FORMAT(A2,"dd mmm yyyy")', '=DATE(A2,"dd mmm yyyy")'],
+    correct: 0,
+    explain: { ro: 'TEXT(value, format). "dd mmm yyyy" → "06 May 2026".', en: 'TEXT(value, format). "dd mmm yyyy" → "06 May 2026".' },
+    hint: { ro: 'TEXT(valoare, "format"). dd=zi, mmm=lună scurt, yyyy=an.', en: 'TEXT(value, "format"). dd=day, mmm=short month, yyyy=year.' }
+  },
+  {
+    type: 'fill',
+    function: 'AND/OR',
+    question: { ro: 'Bonus 100€ dacă scor ≥80 ȘI vânzări ≥1000?', en: 'Bonus €100 if score ≥80 AND sales ≥1000?' },
+    context: { ro: 'IF combinat cu AND pentru condiții multiple.', en: 'IF combined with AND for multiple conditions.' },
+    headers: ['A: Scor', 'B: Vânzări', 'C: Bonus'],
+    rows: [['85', '1200', '?']],
+    targetCell: { row: 0, col: 2 },
+    answers: ['=IF(AND(A2>=80,B2>=1000),100,0)', '=IF(A2>=80 AND B2>=1000,100,0)', '=AND(IF(A2>=80,B2>=1000),100)', '=IF(A2>=80,B2>=1000,100,0)'],
+    correct: 0,
+    explain: { ro: 'AND(condiție1, condiție2) = TRUE doar dacă ambele sunt adevărate.', en: 'AND(cond1, cond2) = TRUE only if both are true.' },
+    hint: { ro: 'AND() pentru "ambele". OR() pentru "cel puțin una".', en: 'AND() for "both". OR() for "at least one".' }
+  },
+  {
+    type: 'fix',
+    function: 'COUNTIF',
+    question: { ro: 'Ce e GREȘIT la =COUNTIF(B2:B5,>10)?', en: 'What is WRONG with =COUNTIF(B2:B5,>10)?' },
+    context: { ro: 'Vrei să numeri valorile mai mari decât 10.', en: 'You want to count values greater than 10.' },
+    headers: ['A: Item', 'B: Cantitate'],
+    rows: [['X', '15'], ['Y', '8']],
+    answers: [
+      { ro: 'Operatorul cu valoare e text → ">10" cu ghilimele', en: 'Operator with value is text → ">10" with quotes' },
+      { ro: 'COUNTIF nu suportă comparații', en: 'COUNTIF doesn\'t support comparisons' },
+      { ro: 'Range-ul e prea mic', en: 'Range is too small' },
+      { ro: 'Trebuie folosit COUNT, nu COUNTIF', en: 'Should use COUNT, not COUNTIF' },
+    ],
+    correct: 0,
+    explain: { ro: 'Operatorii cu valoare se scriu între ghilimele: ">10", "<=5", "<>0".', en: 'Operators with values go in quotes: ">10", "<=5", "<>0".' },
+    hint: { ro: 'Criteriul în COUNTIF/SUMIF: ">10" cu ghilimele când conține operator.', en: 'Criterion in COUNTIF/SUMIF: ">10" in quotes when it has an operator.' }
+  },
+  {
+    type: 'fill',
+    function: 'TRIM',
+    question: { ro: 'Cum elimini spațiile extra din "  John   Doe  "?', en: 'How do you remove extra spaces from "  John   Doe  "?' },
+    context: { ro: 'Date imported din alte sisteme au adesea spații în plus.', en: 'Data imported from other systems often has extra spaces.' },
+    headers: ['A: Brut', 'B: Curat'],
+    rows: [['  John   Doe  ', '?']],
+    targetCell: { row: 0, col: 1 },
+    answers: ['=TRIM(A2)', '=CLEAN(A2)', '=STRIP(A2)', '=REMOVE(A2)'],
+    correct: 0,
+    explain: { ro: 'TRIM elimină spațiile de la început/sfârșit și reduce spațiile multiple la unul.', en: 'TRIM removes leading/trailing spaces and reduces multiple spaces to one.' },
+    hint: { ro: 'TRIM = curăță spații. CLEAN = elimină caractere non-printabile.', en: 'TRIM = cleans spaces. CLEAN = removes non-printable characters.' }
+  },
+  {
+    type: 'fill',
+    function: 'TODAY',
+    question: { ro: 'Câte zile au trecut de la 2026-01-01?', en: 'How many days have passed since 2026-01-01?' },
+    context: { ro: 'TODAY() returnează data curentă, dinamic.', en: 'TODAY() returns the current date, dynamically.' },
+    headers: ['A: Start', 'B: Zile trecute'],
+    rows: [['2026-01-01', '?']],
+    targetCell: { row: 0, col: 1 },
+    answers: ['=TODAY()-A2', '=A2-TODAY()', '=DAYS(A2)', '=NOW()-A2'],
+    correct: 0,
+    explain: { ro: 'Datele sunt numere în Excel — diferența dintre ele = zile.', en: 'Dates are numbers in Excel — their difference = days.' },
+    hint: { ro: 'TODAY() = data de azi. Scădere între date → număr de zile.', en: 'TODAY() = today\'s date. Subtracting dates → number of days.' }
+  },
+  {
+    type: 'fill',
+    function: 'LEFT/RIGHT',
+    question: { ro: 'Cum extragi primele 3 caractere din "PRJ-2024-001"?', en: 'How do you extract the first 3 characters from "PRJ-2024-001"?' },
+    context: { ro: 'Pentru extragerea de prefixe (project codes, country codes).', en: 'For extracting prefixes (project codes, country codes).' },
+    headers: ['A: Cod', 'B: Prefix'],
+    rows: [['PRJ-2024-001', '?']],
+    targetCell: { row: 0, col: 1 },
+    answers: ['=LEFT(A2,3)', '=RIGHT(A2,3)', '=MID(A2,3)', '=FIRST(A2,3)'],
+    correct: 0,
+    explain: { ro: 'LEFT(text, n) = primele n caractere. RIGHT = ultimele.', en: 'LEFT(text, n) = first n chars. RIGHT = last n.' },
+    hint: { ro: 'LEFT = stânga (început). RIGHT = dreapta (sfârșit). MID = mijloc.', en: 'LEFT = left (start). RIGHT = right (end). MID = middle.' }
+  },
 ];
 
 const WORKFLOW_PUZZLES = [
@@ -3905,6 +4665,8 @@ function navigate(pageId) {
     if (pageId === 'hub') renderHub();
     if (pageId === 'profile') renderProfile();
     if (pageId === 'menu') refreshHud();
+    if (pageId === 'dailies') renderDailies();
+    if (pageId === 'customize') renderCustomize();
   }
 }
 
@@ -3935,6 +4697,7 @@ function checkRankUp() {
     state.player.rankIndex++;
     saveState();
     toast('rank', t('hud.rank') + ' UP!', RANKS[state.player.rankIndex].name, '◈');
+    SFX.rankUp();
     return true;
   }
   return false;
@@ -4028,6 +4791,7 @@ function renderHub() {
   renderMissions();
   // Feed
   renderFeed();
+  applyAvatar();
 }
 
 function isDistrictUnlocked(d) {
@@ -4270,12 +5034,14 @@ function handleTriageAction(action) {
     triageState.score += total;
     if (card) card.classList.add('is-resolved');
     showFeedback('+' + total, 'success');
-    if (triageState.combo >= 3) showComboBurst(triageState.combo);
+    if (triageState.combo >= 3) { showComboBurst(triageState.combo); SFX.combo(triageState.combo); }
+    else SFX.success();
   } else {
     triageState.combo = 0;
     if (card) card.classList.add('is-wrong');
     showFeedback(state.lang === 'ro' ? 'GREȘIT' : 'WRONG', 'fail');
     showTriageExplain(task);
+    SFX.fail();
   }
 
   setTimeout(() => {
@@ -4343,7 +5109,14 @@ function endTriage(completed) {
     completed,
   };
 
-  addXp(xpEarned);
+  updateDailiesFromMission(state.lastResults);
+  // Apply streak XP bonus
+  const totalXp = applyStreakBonus(xpEarned);
+  state.lastResults.xp = totalXp;
+  state.lastResults.xpBase = xpEarned;
+  state.lastResults.streakBonus = totalXp - xpEarned;
+
+  addXp(totalXp);
   addCoins(coinsEarned);
   checkAchievements();
   saveState();
@@ -4475,12 +5248,14 @@ function handleFormulaAnswer(idx) {
     buttons[idx].classList.add('is-correct');
     document.querySelector('.formula-puzzle')?.classList.add('is-correct');
     showFeedback('+' + total, 'success');
-    if (formulaState.streak >= 3) showComboBurst(formulaState.streak);
+    if (formulaState.streak >= 3) { showComboBurst(formulaState.streak); SFX.combo(formulaState.streak); }
+    else SFX.success();
   } else {
     formulaState.streak = 0;
     buttons[idx].classList.add('is-wrong');
     buttons[puzzle.correct].classList.add('is-correct');
     showFeedback(state.lang === 'ro' ? 'GREȘIT' : 'WRONG', 'fail');
+    SFX.fail();
     // Show explanation in hint box
     const hintBox = document.getElementById('formula-hint-text');
     hintBox.innerHTML = '✗ ' + escapeHtml(puzzle.explain[state.lang]);
@@ -4532,7 +5307,13 @@ function endFormula(completed) {
     completed,
   };
 
-  addXp(xpEarned);
+  updateDailiesFromMission(state.lastResults);
+  const totalXp = applyStreakBonus(xpEarned);
+  state.lastResults.xp = totalXp;
+  state.lastResults.xpBase = xpEarned;
+  state.lastResults.streakBonus = totalXp - xpEarned;
+
+  addXp(totalXp);
   addCoins(coinsEarned);
   checkAchievements();
   saveState();
@@ -4637,6 +5418,7 @@ function verifyWorkflow() {
     workflowState.score += total;
     stepEls.forEach(el => el.classList.add('is-correct'));
     showFeedback('+' + total, 'success');
+    SFX.success();
     setTimeout(() => {
       workflowState.puzzleIdx++;
       renderWorkflowPuzzle();
@@ -4650,6 +5432,7 @@ function verifyWorkflow() {
       }
     });
     showFeedback(state.lang === 'ro' ? 'NU ÎNCĂ' : 'NOT YET', 'fail');
+    SFX.fail();
   }
   updateWorkflowHud();
 }
@@ -4686,7 +5469,13 @@ function endWorkflow(completed) {
     completed,
   };
 
-  addXp(xpEarned);
+  updateDailiesFromMission(state.lastResults);
+  const totalXp = applyStreakBonus(xpEarned);
+  state.lastResults.xp = totalXp;
+  state.lastResults.xpBase = xpEarned;
+  state.lastResults.streakBonus = totalXp - xpEarned;
+
+  addXp(totalXp);
   addCoins(coinsEarned);
   checkAchievements();
   saveState();
@@ -4812,7 +5601,8 @@ function handleBossAction(action) {
     bossState.score += total;
     card.classList.add('is-resolved');
     showFeedback('-' + damage + ' HP', 'success');
-    if (bossState.combo >= 3) showComboBurst(bossState.combo);
+    SFX.bossHit();
+    if (bossState.combo >= 3) { showComboBurst(bossState.combo); SFX.combo(bossState.combo); }
 
     // Check phase progression
     if (bossState.cardsResolved >= bossState.targetPerPhase * bossState.phase) {
@@ -4825,6 +5615,7 @@ function handleBossAction(action) {
     bossState.multipliedTasks++;
     card.classList.add('is-wrong');
     showFeedback('+5 HP', 'fail');
+    SFX.fail();
   }
 
   updateBossHud();
@@ -4845,6 +5636,7 @@ function advanceBossPhase() {
   const phaseEl = document.getElementById('boss-phase');
   phaseEl.innerHTML = `<span>${state.lang==='ro'?'FAZA':'PHASE'} ${bossState.phase} // ${phaseNames[state.lang][bossState.phase - 1]}</span>`;
   toast('rank', state.lang === 'ro' ? 'FAZĂ NOUĂ' : 'NEW PHASE', state.lang === 'ro' ? 'Hydra evoluează!' : 'The Hydra evolves!', '⚔');
+  SFX.bossPhase();
   bossState.timeLeft += 20;
 }
 
@@ -4889,7 +5681,13 @@ function endBoss(victory) {
     isBoss: true,
   };
 
-  addXp(xpEarned);
+  updateDailiesFromMission(state.lastResults);
+  const totalXp = applyStreakBonus(xpEarned);
+  state.lastResults.xp = totalXp;
+  state.lastResults.xpBase = xpEarned;
+  state.lastResults.streakBonus = totalXp - xpEarned;
+
+  addXp(totalXp);
   addCoins(coinsEarned);
   checkAchievements();
   saveState();
@@ -4937,12 +5735,19 @@ function showResults() {
   `).join('');
 
   navigate('results');
+  if (r.completed) {
+    if (r.isBoss) SFX.victory();
+    else if (r.perfect) SFX.victory();
+    else SFX.success();
+  } else {
+    SFX.fail();
+  }
 
   // Show new achievements
   if (r._newAchievements && r._newAchievements.length) {
     setTimeout(() => {
       r._newAchievements.forEach((a, i) => {
-        setTimeout(() => toast('badge', state.lang === 'ro' ? 'BADGE NOU' : 'NEW BADGE', a.name[state.lang], a.icon), i * 600);
+        setTimeout(() => { toast('badge', state.lang === 'ro' ? 'BADGE NOU' : 'NEW BADGE', a.name[state.lang], a.icon); SFX.badge(); }, i * 600);
       });
     }, 800);
   }
@@ -5025,21 +5830,610 @@ function renderProfile() {
   }).join('');
   document.getElementById('achievements-unlocked').textContent = countUnlockedAchievements();
   document.getElementById('achievements-total').textContent = ACHIEVEMENTS.length;
+  applyAvatar();
 }
 
 
 // ============================================================
-// EVENT HANDLERS & INITIALIZATION
+// SOUND ENGINE — Web Audio API arcade SFX
 // ============================================================
+const SFX = {
+  ctx: null,
+  enabled: true,
+  master: null,
+
+  init() {
+    if (this.ctx) return;
+    try {
+      this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+      this.master = this.ctx.createGain();
+      this.master.gain.value = 0.25;
+      this.master.connect(this.ctx.destination);
+    } catch (e) { this.enabled = false; }
+  },
+
+  resume() {
+    if (this.ctx && this.ctx.state === 'suspended') this.ctx.resume();
+  },
+
+  // Core synth: oscillator + envelope
+  beep(freq, duration = 0.08, type = 'square', attack = 0.005, release = 0.05, gain = 0.3) {
+    if (!this.enabled || !this.ctx) return;
+    const now = this.ctx.currentTime;
+    const osc = this.ctx.createOscillator();
+    const env = this.ctx.createGain();
+    osc.type = type;
+    osc.frequency.value = freq;
+    env.gain.setValueAtTime(0, now);
+    env.gain.linearRampToValueAtTime(gain, now + attack);
+    env.gain.exponentialRampToValueAtTime(0.0001, now + duration + release);
+    osc.connect(env);
+    env.connect(this.master);
+    osc.start(now);
+    osc.stop(now + duration + release + 0.05);
+  },
+
+  // Slide between frequencies (for swooshes, success arpeggios)
+  slide(fromFreq, toFreq, duration = 0.15, type = 'square', gain = 0.25) {
+    if (!this.enabled || !this.ctx) return;
+    const now = this.ctx.currentTime;
+    const osc = this.ctx.createOscillator();
+    const env = this.ctx.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(fromFreq, now);
+    osc.frequency.exponentialRampToValueAtTime(toFreq, now + duration);
+    env.gain.setValueAtTime(0, now);
+    env.gain.linearRampToValueAtTime(gain, now + 0.01);
+    env.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+    osc.connect(env);
+    env.connect(this.master);
+    osc.start(now);
+    osc.stop(now + duration + 0.05);
+  },
+
+  // Noise burst (for boss hits, errors)
+  noise(duration = 0.1, gain = 0.15, freq = 400) {
+    if (!this.enabled || !this.ctx) return;
+    const now = this.ctx.currentTime;
+    const buffer = this.ctx.createBuffer(1, this.ctx.sampleRate * duration, this.ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / data.length);
+    const src = this.ctx.createBufferSource();
+    src.buffer = buffer;
+    const filter = this.ctx.createBiquadFilter();
+    filter.type = 'bandpass';
+    filter.frequency.value = freq;
+    filter.Q.value = 2;
+    const env = this.ctx.createGain();
+    env.gain.value = gain;
+    src.connect(filter); filter.connect(env); env.connect(this.master);
+    src.start(now);
+  },
+
+  // ===== Game-specific SFX =====
+  click()       { this.beep(720, 0.04, 'square', 0.001, 0.03, 0.18); },
+  hover()       { this.beep(900, 0.025, 'sine', 0.001, 0.02, 0.08); },
+  uiOpen()      { this.slide(400, 800, 0.12, 'sawtooth', 0.18); },
+
+  success() {
+    // Ascending arpeggio C-E-G
+    this.beep(523, 0.08, 'square', 0.001, 0.04, 0.22);
+    setTimeout(() => this.beep(659, 0.08, 'square', 0.001, 0.04, 0.22), 60);
+    setTimeout(() => this.beep(784, 0.12, 'square', 0.001, 0.06, 0.25), 120);
+  },
+
+  fail() {
+    this.beep(220, 0.1, 'sawtooth', 0.001, 0.06, 0.25);
+    setTimeout(() => this.beep(180, 0.18, 'sawtooth', 0.001, 0.1, 0.25), 80);
+  },
+
+  combo(level) {
+    // Pitch escalates with combo level
+    const base = 600 + Math.min(level, 12) * 60;
+    this.beep(base, 0.06, 'square', 0.001, 0.04, 0.22);
+    setTimeout(() => this.beep(base * 1.5, 0.08, 'square', 0.001, 0.05, 0.22), 40);
+  },
+
+  rankUp() {
+    // Triumphal 4-note flourish
+    [440, 554, 659, 880].forEach((f, i) => {
+      setTimeout(() => this.beep(f, 0.15, 'square', 0.005, 0.08, 0.28), i * 90);
+    });
+  },
+
+  badge() {
+    this.slide(600, 1200, 0.18, 'sine', 0.22);
+    setTimeout(() => this.slide(800, 1600, 0.15, 'sine', 0.18), 100);
+  },
+
+  bossHit() {
+    this.noise(0.08, 0.18, 800);
+    this.beep(150, 0.12, 'sawtooth', 0.001, 0.08, 0.3);
+  },
+
+  bossPhase() {
+    // Ominous descending then rising
+    this.slide(400, 80, 0.3, 'sawtooth', 0.3);
+    setTimeout(() => this.slide(80, 600, 0.4, 'sawtooth', 0.25), 250);
+  },
+
+  victory() {
+    // Big arpeggio
+    [523, 659, 784, 1047, 1319].forEach((f, i) => {
+      setTimeout(() => this.beep(f, 0.2, 'square', 0.005, 0.1, 0.3), i * 80);
+    });
+  },
+
+  tick() { this.beep(1200, 0.02, 'sine', 0.001, 0.015, 0.08); },
+
+  toggle() {
+    this.enabled = !this.enabled;
+    if (this.enabled) this.click();
+    state.soundEnabled = this.enabled;
+    saveState();
+    return this.enabled;
+  },
+};
+
+// ============================================================
+// ONBOARDING TUTORIAL — first-time experience
+// ============================================================
+const ONBOARDING_STEPS = [
+  {
+    icon: '⌬',
+    title: { ro: 'BUN VENIT, OPERATOR', en: 'WELCOME, OPERATOR' },
+    text: {
+      ro: 'Te aflu în <strong>ARCADE OPS HQ</strong> — un univers gamificat unde prioritizezi task-uri reale, rezolvi puzzle-uri Excel și optimizezi workflow-uri pentru a deveni <strong>Master Operator</strong>.',
+      en: 'You are in <strong>ARCADE OPS HQ</strong> — a gamified universe where you prioritize real tasks, solve Excel puzzles, and optimize workflows to become a <strong>Master Operator</strong>.'
+    }
+  },
+  {
+    icon: '⚡',
+    title: { ro: 'TRIAGE RUSH', en: 'TRIAGE RUSH' },
+    text: {
+      ro: 'Primești carduri cu task-uri reale (incidente, cereri, bug-uri) și ai <strong>4 acțiuni</strong>: <strong>Resolve</strong> dacă poți tu rapid, <strong>Escalate</strong> pentru P1/urgențe, <strong>Defer</strong> pentru cosmetic/no-rush, <strong>Assign</strong> pentru un alt team.',
+      en: 'You get cards with real tasks (incidents, requests, bugs) and <strong>4 actions</strong>: <strong>Resolve</strong> if you can do it fast, <strong>Escalate</strong> for P1/urgent, <strong>Defer</strong> for cosmetic/no-rush, <strong>Assign</strong> to another team.'
+    },
+    keys: [
+      { label: 'Resolve', key: '1 / R' },
+      { label: 'Escalate', key: '2 / E' },
+      { label: 'Defer', key: '3 / D' },
+      { label: 'Assign', key: '4 / A' },
+    ]
+  },
+  {
+    icon: '∑',
+    title: { ro: 'FORMULA LAB', en: 'FORMULA LAB' },
+    text: {
+      ro: 'Puzzle-uri reale de Excel: <strong>SUM, IF, COUNTIF, XLOOKUP, VLOOKUP, INDEX-MATCH, TEXT, DATE</strong> și multe altele. 4 răspunsuri multiple, feedback instant, hint-uri în panoul lateral.',
+      en: 'Real Excel puzzles: <strong>SUM, IF, COUNTIF, XLOOKUP, VLOOKUP, INDEX-MATCH, TEXT, DATE</strong> and many more. 4 multiple choice answers, instant feedback, hints in the side panel.'
+    },
+    keys: [
+      { label: 'Răspuns A/B/C/D', key: '1-4 sau A-D' },
+    ]
+  },
+  {
+    icon: '◈',
+    title: { ro: 'PROGRESIE & RANG', en: 'PROGRESSION & RANK' },
+    text: {
+      ro: 'Câștigi <strong>XP</strong> și <strong>coins</strong> din fiecare misiune. Avansezi prin <strong>8 ranguri</strong>, de la Trainee la Master Operator. Combo-urile multiplică scorul. Misiunile perfecte aduc bonus.',
+      en: 'You earn <strong>XP</strong> and <strong>coins</strong> from each mission. You advance through <strong>8 ranks</strong>, from Trainee to Master Operator. Combos multiply your score. Perfect missions get bonuses.'
+    }
+  },
+  {
+    icon: '⚔',
+    title: { ro: 'DISTRICTE & BOSS', en: 'DISTRICTS & BOSSES' },
+    text: {
+      ro: 'Pe World Map ai <strong>6 districte</strong>. Le deblochezi progresiv. Ultimul nivel e <strong>The Queue Hydra</strong> — un boss fight cu 3 faze unde fiecare greșeală îl face mai puternic. Apasă <kbd>Esc</kbd> oricând pentru exit.',
+      en: 'On the World Map you have <strong>6 districts</strong>. You unlock them progressively. The final level is <strong>The Queue Hydra</strong> — a 3-phase boss fight where every mistake makes it stronger. Press <kbd>Esc</kbd> anytime to exit.'
+    }
+  },
+];
+
+let onboardingStep = 0;
+
+function startOnboarding() {
+  onboardingStep = 0;
+  document.getElementById('onboarding-overlay').style.display = 'grid';
+  renderOnboardingStep();
+  SFX.uiOpen();
+}
+
+function renderOnboardingStep() {
+  const step = ONBOARDING_STEPS[onboardingStep];
+  const totalSteps = ONBOARDING_STEPS.length;
+  document.getElementById('onboarding-icon').textContent = step.icon;
+  document.getElementById('onboarding-title').textContent = step.title[state.lang];
+  document.getElementById('onboarding-text').innerHTML = step.text[state.lang];
+  document.getElementById('onboarding-step-label').textContent = `// STEP ${onboardingStep + 1} / ${totalSteps}`;
+
+  // Progress dots
+  const progress = document.getElementById('onboarding-progress');
+  progress.innerHTML = ONBOARDING_STEPS.map((_, i) => {
+    let cls = '';
+    if (i === onboardingStep) cls = 'is-active';
+    else if (i < onboardingStep) cls = 'is-done';
+    return `<div class="onboarding-progress-dot ${cls}"></div>`;
+  }).join('');
+
+  // Extra (keys)
+  const extra = document.getElementById('onboarding-extra');
+  if (step.keys) {
+    extra.innerHTML = '<div class="onboarding-keys">' + step.keys.map(k =>
+      `<div class="onboarding-key"><kbd>${k.key}</kbd> ${k.label}</div>`
+    ).join('') + '</div>';
+  } else {
+    extra.innerHTML = '';
+  }
+
+  // Buttons
+  const back = document.getElementById('onboarding-back');
+  const next = document.getElementById('onboarding-next');
+  back.style.display = onboardingStep === 0 ? 'none' : 'inline-flex';
+  const nextLabel = onboardingStep === totalSteps - 1 ? t('onboarding.start') : t('onboarding.next');
+  next.querySelector('span').textContent = nextLabel;
+}
+
+function onboardingNext() {
+  if (onboardingStep < ONBOARDING_STEPS.length - 1) {
+    onboardingStep++;
+    renderOnboardingStep();
+    SFX.click();
+  } else {
+    finishOnboarding();
+  }
+}
+
+function onboardingBack() {
+  if (onboardingStep > 0) {
+    onboardingStep--;
+    renderOnboardingStep();
+    SFX.click();
+  }
+}
+
+function finishOnboarding() {
+  document.getElementById('onboarding-overlay').style.display = 'none';
+  state.onboardingDone = true;
+  saveState();
+  SFX.success();
+  toast('rank', state.lang === 'ro' ? 'GATA' : 'READY',
+    state.lang === 'ro' ? 'Începe cu Triage Rush!' : 'Start with Triage Rush!', '⚡');
+}
+
+// ============================================================
+// DAILY CHALLENGES + STREAK SYSTEM
+// ============================================================
+const DAILY_TEMPLATES = [
+  { id: 'triage_perfect', icon: '⚡', color: '#ff8a3c', tag: 'TRIAGE',
+    title: { ro: 'TRIAGE FĂRĂ GREȘELI', en: 'FLAWLESS TRIAGE' },
+    desc: { ro: 'Completează un Triage Rush cu accuracy 100%.', en: 'Complete a Triage Rush with 100% accuracy.' },
+    target: 1, type: 'triage_perfect', reward: 250 },
+  { id: 'formula_5', icon: '∑', color: '#00f0ff', tag: 'FORMULA',
+    title: { ro: 'FORMULA STREAK 5', en: 'FORMULA STREAK 5' },
+    desc: { ro: 'Atinge un streak de 5 în Formula Lab.', en: 'Reach a streak of 5 in Formula Lab.' },
+    target: 5, type: 'formula_streak', reward: 200 },
+  { id: 'workflow_1', icon: '⚙', color: '#b6ff3c', tag: 'WORKFLOW',
+    title: { ro: 'PROCES MASTER', en: 'PROCESS MASTER' },
+    desc: { ro: 'Rezolvă un workflow din prima încercare.', en: 'Solve a workflow on first try.' },
+    target: 1, type: 'workflow_first', reward: 180 },
+  { id: 'combo_7', icon: '⟿', color: '#ff2ec8', tag: 'COMBO',
+    title: { ro: 'COMBO 7x', en: 'COMBO 7x' },
+    desc: { ro: 'Atinge un combo de 7 într-o singură rundă.', en: 'Hit a 7x combo in one run.' },
+    target: 7, type: 'combo', reward: 220 },
+  { id: 'missions_3', icon: '⬢', color: '#a855ff', tag: 'OPS',
+    title: { ro: '3 MISIUNI', en: '3 MISSIONS' },
+    desc: { ro: 'Completează 3 misiuni astăzi.', en: 'Complete 3 missions today.' },
+    target: 3, type: 'missions_today', reward: 300 },
+  { id: 'score_1500', icon: '✦', color: '#b6ff3c', tag: 'SCORE',
+    title: { ro: 'SCORE 1500', en: 'SCORE 1500' },
+    desc: { ro: 'Obține un scor de 1500+ într-o singură misiune.', en: 'Get a 1500+ score in a single mission.' },
+    target: 1500, type: 'high_score', reward: 270 },
+];
+
+function getTodayKey() {
+  const now = new Date();
+  return `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+}
+
+function getYesterdayKey() {
+  const d = new Date();
+  d.setDate(d.getDate() - 1);
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+function ensureDailies() {
+  const today = getTodayKey();
+  if (!state.daily || state.daily.day !== today) {
+    // Pick 3 random challenges based on day seed
+    const seed = today.split('-').reduce((s, x) => s + parseInt(x, 10), 0);
+    const shuffled = [...DAILY_TEMPLATES].sort((a, b) => {
+      return ((seed + a.id.length) % 7) - ((seed + b.id.length) % 7);
+    });
+    const picked = shuffled.slice(0, 3);
+
+    // Update streak
+    if (state.daily) {
+      const allCompleted = state.daily.challenges.every(c => c.progress >= c.target);
+      if (state.daily.day === getYesterdayKey() && allCompleted) {
+        state.streak = (state.streak || 0) + 1;
+      } else if (state.daily.day !== getYesterdayKey() || !allCompleted) {
+        state.streak = allCompleted ? 1 : 0;
+      }
+    }
+    state.daily = {
+      day: today,
+      challenges: picked.map(t => ({ id: t.id, progress: 0, target: t.target, claimed: false }))
+    };
+    saveState();
+  }
+  if (state.streak === undefined) state.streak = 0;
+  if (state.dailyStats === undefined) state.dailyStats = { day: today, missions: 0 };
+  if (state.dailyStats.day !== today) state.dailyStats = { day: today, missions: 0 };
+}
+
+function getStreakBonus() {
+  // 10% per streak day, capped at 50%
+  return Math.min(50, (state.streak || 0) * 10);
+}
+
+function applyStreakBonus(xp) {
+  const bonus = getStreakBonus();
+  return Math.round(xp * (1 + bonus / 100));
+}
+
+function updateDailiesFromMission(result) {
+  if (!state.daily) return;
+  const today = getTodayKey();
+  state.dailyStats.missions = (state.dailyStats.missions || 0) + 1;
+
+  state.daily.challenges.forEach(c => {
+    if (c.progress >= c.target) return;
+    const tpl = DAILY_TEMPLATES.find(t => t.id === c.id);
+    if (!tpl) return;
+    let inc = 0;
+    if (tpl.type === 'triage_perfect' && result.type === 'triage' && result.completed && result.accuracy === 100) inc = 1;
+    else if (tpl.type === 'formula_streak' && result.type === 'formula' && result.combo >= tpl.target) c.progress = tpl.target;
+    else if (tpl.type === 'workflow_first' && result.type === 'workflow' && result.completed && result.accuracy === 100) inc = 1;
+    else if (tpl.type === 'combo' && result.combo >= tpl.target) c.progress = tpl.target;
+    else if (tpl.type === 'missions_today') inc = 1;
+    else if (tpl.type === 'high_score' && result.score >= tpl.target) c.progress = tpl.target;
+    if (inc > 0) c.progress = Math.min(c.target, c.progress + inc);
+  });
+  saveState();
+}
+
+function claimDaily(id) {
+  if (!state.daily) return;
+  const c = state.daily.challenges.find(x => x.id === id);
+  const tpl = DAILY_TEMPLATES.find(t => t.id === id);
+  if (!c || !tpl || c.claimed || c.progress < c.target) return;
+  c.claimed = true;
+  addXp(tpl.reward);
+  addCoins(Math.round(tpl.reward / 5));
+  toast('xp', state.lang === 'ro' ? 'CHALLENGE COMPLET' : 'CHALLENGE DONE',
+    `+${tpl.reward} XP`, '🔥');
+  SFX.badge();
+  saveState();
+  renderDailies();
+}
+
+function renderDailies() {
+  ensureDailies();
+  document.getElementById('streak-count').textContent = state.streak || 0;
+  document.getElementById('dailies-bonus').textContent = '+' + getStreakBonus() + '%';
+
+  const grid = document.getElementById('dailies-grid');
+  grid.innerHTML = state.daily.challenges.map(c => {
+    const tpl = DAILY_TEMPLATES.find(t => t.id === c.id);
+    const completed = c.progress >= c.target;
+    const claimed = c.claimed;
+    const pct = Math.min(100, (c.progress / c.target) * 100);
+    return `
+      <div class="daily-card ${claimed ? 'is-completed' : ''}" style="--daily-color:${tpl.color}">
+        <div class="daily-card-header">
+          <div class="daily-icon">${tpl.icon}</div>
+          <div>
+            <div class="daily-tag">${tpl.tag}</div>
+            <div class="daily-title">${tpl.title[state.lang]}</div>
+          </div>
+        </div>
+        <div class="daily-desc">${tpl.desc[state.lang]}</div>
+        <div class="daily-progress-bar"><div class="daily-progress-fill" style="width:${pct}%"></div></div>
+        <div class="daily-meta">
+          <span class="daily-progress-text"><strong>${c.progress}</strong> / ${c.target}</span>
+          <span class="daily-reward">+${tpl.reward} XP</span>
+        </div>
+        ${completed && !claimed ? `<button class="btn btn--lime btn--sm" style="width:100%;margin-top:14px" data-claim="${c.id}">⚡ CLAIM REWARD</button>` : ''}
+      </div>
+    `;
+  }).join('');
+
+  // Wire claim buttons
+  grid.querySelectorAll('[data-claim]').forEach(btn => {
+    btn.addEventListener('click', () => claimDaily(btn.dataset.claim));
+  });
+
+  startDailiesCountdown();
+}
+
+let dailiesCountdownTimer = null;
+function startDailiesCountdown() {
+  if (dailiesCountdownTimer) clearInterval(dailiesCountdownTimer);
+  const updateCountdown = () => {
+    const now = new Date();
+    const tomorrow = new Date(now);
+    tomorrow.setDate(now.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);
+    const diff = tomorrow - now;
+    const h = Math.floor(diff / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    const el = document.getElementById('dailies-countdown');
+    if (el) el.textContent = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  };
+  updateCountdown();
+  dailiesCountdownTimer = setInterval(updateCountdown, 1000);
+}
+
+// ============================================================
+// CUSTOMIZATION STATION
+// ============================================================
+const AVATAR_SKINS = [
+  { id: 'default', name: { ro: 'NEON CLASIC', en: 'NEON CLASSIC' }, gradient: 'linear-gradient(135deg, #a855ff, #ff2ec8)', cost: 0, unlocked: true },
+  { id: 'cyan', name: { ro: 'CYAN PULSE', en: 'CYAN PULSE' }, gradient: 'linear-gradient(135deg, #00f0ff, #2c8eff)', cost: 50 },
+  { id: 'lime', name: { ro: 'LIME CIRCUIT', en: 'LIME CIRCUIT' }, gradient: 'linear-gradient(135deg, #b6ff3c, #67d600)', cost: 100 },
+  { id: 'orange', name: { ro: 'AMBER FLAME', en: 'AMBER FLAME' }, gradient: 'linear-gradient(135deg, #ff8a3c, #ff3a5e)', cost: 100 },
+  { id: 'gold', name: { ro: 'GOLD ELITE', en: 'GOLD ELITE' }, gradient: 'linear-gradient(135deg, #ffd700, #ff8a3c)', cost: 250 },
+  { id: 'rainbow', name: { ro: 'PRIZM MASTER', en: 'PRIZM MASTER' }, gradient: 'linear-gradient(135deg, #ff2ec8, #00f0ff, #b6ff3c)', cost: 500 },
+];
+
+const NEON_THEMES = [
+  { id: 'magenta', name: { ro: 'MAGENTA OPS', en: 'MAGENTA OPS' }, primary: '#ff2ec8', secondary: '#00f0ff', cost: 0, unlocked: true },
+  { id: 'cyber', name: { ro: 'CYBER BLUE', en: 'CYBER BLUE' }, primary: '#00f0ff', secondary: '#a855ff', cost: 80 },
+  { id: 'toxic', name: { ro: 'TOXIC LIME', en: 'TOXIC LIME' }, primary: '#b6ff3c', secondary: '#00f0ff', cost: 120 },
+  { id: 'sunset', name: { ro: 'SUNSET HUNT', en: 'SUNSET HUNT' }, primary: '#ff8a3c', secondary: '#ff2ec8', cost: 120 },
+  { id: 'matrix', name: { ro: 'MATRIX GREEN', en: 'MATRIX GREEN' }, primary: '#00ff88', secondary: '#67d600', cost: 200 },
+];
+
+function ensureCustomization() {
+  if (!state.customization) {
+    state.customization = {
+      avatarSkin: 'default',
+      neonTheme: 'magenta',
+      unlockedAvatars: ['default'],
+      unlockedThemes: ['magenta'],
+    };
+  }
+}
+
+function applyTheme() {
+  ensureCustomization();
+  const theme = NEON_THEMES.find(t => t.id === state.customization.neonTheme) || NEON_THEMES[0];
+  document.documentElement.style.setProperty('--neon-magenta', theme.primary);
+  document.documentElement.style.setProperty('--neon-cyan', theme.secondary);
+}
+
+function applyAvatar() {
+  ensureCustomization();
+  const skin = AVATAR_SKINS.find(s => s.id === state.customization.avatarSkin) || AVATAR_SKINS[0];
+  document.querySelectorAll('.player-avatar, .profile-avatar-lg').forEach(el => {
+    el.style.background = skin.gradient;
+  });
+}
+
+function unlockItem(type, id) {
+  ensureCustomization();
+  const list = type === 'avatar' ? AVATAR_SKINS : NEON_THEMES;
+  const item = list.find(x => x.id === id);
+  if (!item) return;
+  const unlockedKey = type === 'avatar' ? 'unlockedAvatars' : 'unlockedThemes';
+  if (state.customization[unlockedKey].includes(id)) return;
+  if (state.player.coins < item.cost) {
+    toast('rank', state.lang === 'ro' ? 'COINS INSUFICIENȚI' : 'NOT ENOUGH COINS',
+      `${item.cost - state.player.coins} ${state.lang === 'ro' ? 'coins lipsă' : 'coins short'}`, '◉');
+    SFX.fail();
+    return;
+  }
+  state.player.coins -= item.cost;
+  state.customization[unlockedKey].push(id);
+  saveState();
+  refreshHud();
+  toast('badge', state.lang === 'ro' ? 'DEBLOCAT' : 'UNLOCKED', item.name[state.lang], '✨');
+  SFX.badge();
+  renderCustomize();
+}
+
+function equipItem(type, id) {
+  ensureCustomization();
+  if (type === 'avatar') state.customization.avatarSkin = id;
+  else state.customization.neonTheme = id;
+  saveState();
+  applyTheme();
+  applyAvatar();
+  SFX.success();
+  renderCustomize();
+}
+
+function renderCustomize() {
+  ensureCustomization();
+  const grid = document.getElementById('customize-grid');
+  if (!grid) return;
+
+  const renderItem = (item, type) => {
+    const unlockedList = type === 'avatar' ? state.customization.unlockedAvatars : state.customization.unlockedThemes;
+    const equipped = (type === 'avatar' ? state.customization.avatarSkin : state.customization.neonTheme) === item.id;
+    const unlocked = unlockedList.includes(item.id) || item.unlocked;
+    const preview = type === 'avatar'
+      ? `<div class="customize-preview-avatar" style="background:${item.gradient}">L</div>`
+      : `<div class="customize-preview-theme" style="background:linear-gradient(135deg, ${item.primary}, ${item.secondary})"></div>`;
+
+    let action = '';
+    if (equipped) action = `<button class="btn btn--ghost btn--sm" disabled>${t('customize.equipped')}</button>`;
+    else if (unlocked) action = `<button class="btn btn--cyan btn--sm" data-equip="${type}:${item.id}">${t('customize.equip')}</button>`;
+    else action = `<button class="btn btn--lime btn--sm" data-unlock="${type}:${item.id}">${t('customize.unlock')} • ${item.cost} ◉</button>`;
+
+    return `
+      <div class="customize-item ${equipped ? 'is-equipped' : ''} ${unlocked ? '' : 'is-locked'}">
+        ${preview}
+        <div class="customize-name">${item.name[state.lang]}</div>
+        ${action}
+      </div>
+    `;
+  };
+
+  grid.innerHTML = `
+    <div class="customize-section">
+      <div class="customize-section-title">${t('customize.avatar')}</div>
+      <div class="customize-items">${AVATAR_SKINS.map(s => renderItem(s, 'avatar')).join('')}</div>
+    </div>
+    <div class="customize-section">
+      <div class="customize-section-title">${t('customize.theme')}</div>
+      <div class="customize-items">${NEON_THEMES.map(theme => renderItem(theme, 'theme')).join('')}</div>
+    </div>
+  `;
+
+  grid.querySelectorAll('[data-unlock]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const [type, id] = btn.dataset.unlock.split(':');
+      unlockItem(type, id);
+    });
+  });
+  grid.querySelectorAll('[data-equip]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const [type, id] = btn.dataset.equip.split(':');
+      equipItem(type, id);
+    });
+  });
+}
+
+
 function init() {
   applyI18n();
+  ensureCustomization();
+  ensureDailies();
+  applyTheme();
   refreshHud();
+
+  // Init sound on first user interaction
+  SFX.enabled = state.soundEnabled !== false;
+  const startAudio = () => {
+    SFX.init();
+    SFX.resume();
+    document.removeEventListener('pointerdown', startAudio);
+    document.removeEventListener('keydown', startAudio);
+  };
+  document.addEventListener('pointerdown', startAudio);
+  document.addEventListener('keydown', startAudio);
 
   // Splash CTA
   document.getElementById('btn-enter-hq').addEventListener('click', () => {
+    SFX.uiOpen();
     hideSplash();
     navigate('hub');
-    if (state.stats.missionsDone === 0) {
+    if (!state.onboardingDone) {
+      setTimeout(() => startOnboarding(), 600);
+    } else if (state.stats.missionsDone === 0) {
       setTimeout(() => {
         toast('rank', state.lang === 'ro' ? 'BUN VENIT' : 'WELCOME',
           state.lang === 'ro' ? 'Începe cu o misiune Triage Rush!' : 'Start with a Triage Rush mission!',
@@ -5047,6 +6441,11 @@ function init() {
       }, 800);
     }
   });
+
+  // Onboarding handlers
+  document.getElementById('onboarding-next').addEventListener('click', onboardingNext);
+  document.getElementById('onboarding-back').addEventListener('click', onboardingBack);
+  document.getElementById('onboarding-skip-btn').addEventListener('click', finishOnboarding);
 
   // HUD logo click → hub
   document.querySelector('.hud-logo').addEventListener('click', () => navigate('hub'));
@@ -5062,6 +6461,27 @@ function init() {
       if (currentPage === 'hub') renderHub();
       if (currentPage === 'profile') renderProfile();
     });
+  });
+
+  // Subtle click sound on all buttons (delegated)
+  document.addEventListener('pointerdown', (e) => {
+    const btn = e.target.closest('button, .menu-item, .district, .mission-card, .achievement, .triage-action');
+    if (btn && !btn.disabled && !btn.classList.contains('is-disabled')) {
+      SFX.click();
+    }
+  }, true);
+
+  // Sound toggle
+  const soundBtn = document.getElementById('hud-sound-toggle');
+  const soundIcon = document.getElementById('hud-sound-icon');
+  if (state.soundEnabled === false) {
+    soundBtn.classList.add('is-muted');
+    soundIcon.textContent = '⊘';
+  }
+  soundBtn.addEventListener('click', () => {
+    const enabled = SFX.toggle();
+    soundBtn.classList.toggle('is-muted', !enabled);
+    soundIcon.textContent = enabled ? '♪' : '⊘';
   });
 
   // Generic data-nav handlers
